@@ -1,0 +1,136 @@
+CREATE TABLE Teachers 
+(teacher_id NUMBER(5) PRIMARY KEY,
+t_lastname VARCHAR2(10) NOT NULL,
+t_firstName VARCHAR2(10) NOT NULL,
+t_street VARCHAR2(20),
+t_city VARCHAR2(12),
+t_zip VARCHAR2(5),
+t_email VARCHAR2(25),
+t_phone NUMBER(10)
+);
+
+CREATE TABLE Students
+(student_id NUMBER(5) PRIMARY KEY,
+school_id NUMBER(5) FOREIGN KEY
+s_lastname VARCHAR2(10) NOT NULL,
+s_firstName VARCHAR2(10) NOT NULL,
+s_street VARCHAR2(20),
+s_city VARCHAR2(12),
+s_zip VARCHAR2(5),
+s_email VARCHAR2(25),
+s_phone NUMBER(10)
+);
+
+CREATE TABLE Parents
+(student_id NUMBER(5) FOREIGN KEY,
+p_lastname VARCHAR2(10) NOT NULL,
+p_firstName VARCHAR2(10) NOT NULL,
+p_street VARCHAR2(20),
+p_city VARCHAR2(12),
+p_zip VARCHAR2(5),
+p_email VARCHAR2(25),
+p_phone NUMBER(10)
+);
+
+CREATE TABLE Schools
+(school_id NUMBER(5) PRIMARY KEY,
+school_name VARCHAR2(10) NOT NULL,
+school_street VARCHAR2(20),
+school_phone NUMBER(10)
+);
+
+CREATE TABLE Classes
+(class_id  NUMBER(5) PRIMARY KEY,
+teacher_id NUMBER(5) FOREIGN KEY,
+school_id NUMBER(5) FOREIGN KEY,
+class_name VARCHAR2(15)
+);
+
+CREATE TABLE Student_Classes
+(student_id NUMBER(5) FOREIGN KEY,
+class_id NUMBER(5) FOREIGN KEY
+);
+
+CREATE TABLE Attendance
+(student_id NUMBER(5) FOREIGN KEY,
+class_id NUMBER(5) FOREIGN KEY,
+teacher_id NUMBER(5) FOREIGN KEY,
+date DATE DEFAULT SYSDATE
+);
+
+INSERT INTO Students
+VALUES (10001, 1001, 'Momo', 'Billy', '123 Banana Rd', 'Killeen', 'TX', '76544', NULL, '1234567890');
+INSERT INTO Students
+VALUES (10002, 1001, 'Thompson', 'Rob', '456 Hick Lane', 'Killeen', 'TX', '76544', NULL, '1234567891');
+INSERT INTO Students
+VALUES (10003, 1001, 'Smott', 'Leilana', '789 Tilean Path', 'Killeen', 'TX', '76544', NULL, '1234567892'); 
+INSERT INTO Students
+VALUES (10004, 1001, 'Piers', 'Tomas', '69821 South Ave', 'Killeen', 'TX', '76544', NULL, '1234567893'); 
+INSERT INTO Students
+VALUES (10005, 1001, 'Gready', 'Cindazaale', '666 Demon Street', 'Killeen', 'TX', '76544', NULL, '1234567894');
+
+INSERT INTO Parents
+VALUES (10001, 'Momo', 'Robert', '123 Banana Rd', 'Killeen', 'TX', '76544', 'momo4more@yahoo.com', '1234567890');
+INSERT INTO Parents
+VALUES (10002, 'Thompson', 'Marge', '456 Hick Lane', 'Killeen', 'TX', '76544', 'asjhk@yahoo.com', '1234567891');
+INSERT INTO Parents
+VALUES (10003, 'Smott', 'Suzy', '789 Tilean Path', 'Killeen', 'TX', '76544', 'dingaline@gmail.com', '1234567892'); 
+INSERT INTO Parents
+VALUES (10004, 'Piers', 'Ricardo', '69821 South Ave', 'Killeen', 'TX', '76544', 'roperropety@hotmail.com', '1234567893'); 
+INSERT INTO Parents
+VALUES (10005, 'Gready', 'Lulu', '666 Demon Street', 'Killeen', 'TX', '76544', 'greedygready@gmail.com', '1234567894');
+
+INSERT INTO Teachers
+VALUES (10001, 'McCrary', 'Richard', '123 Bowl Dr', 'Killeen', 'TX', '76544', 'mccray@killeenisd.org', '2234567890');
+INSERT INTO Teachers
+VALUES (10002, 'Rivera', 'JD', '456 Topper Rd', 'Killeen', 'TX', '76544', 'rivera@killeenisd.org', '3234567891');
+INSERT INTO Teachers
+VALUES (10003, 'Rodriguez', 'Anna', '789 Apache Dr', 'Killeen', 'TX', '76544', 'rodriguez@killeenisd.org', '4234567892'); 
+INSERT INTO Teachers
+VALUES (10004, 'Rhodes', 'Lorin', '698 White Ln', 'Killeen', 'TX', '76544', 'rhodes@killeenisd.org', '5234567893'); 
+INSERT INTO Teachers
+VALUES (10005, 'Miller', 'Kailani', '696 Brewers Ln', 'Killeen', 'TX', '76544', 'miller@killeenisd.org', '6234567894');
+
+INSERT INTO Classes
+VALUES (10001, 10001, 10001, 'English 7');
+INSERT INTO Classes
+VALUES (10002, 10002, 10001, 'Texas History 7');
+INSERT INTO Classes
+VALUES (10003, 10003, 10001, 'Geometry 7'); 
+INSERT INTO Classes
+VALUES (10004, 10004, 10001, 'AVID'); 
+INSERT INTO Classes
+VALUES (10005, 10005, 10001, 'Computer Skills);
+
+INSERT INTO Student_Classes
+VALUES (10001, 10001);
+INSERT INTO Student_Classes
+VALUES (10002, 10001);
+INSERT INTO Student_Classes
+VALUES (10003, 10001); 
+INSERT INTO Student_Classes
+VALUES (10004, 10001); 
+INSERT INTO Student_Classes
+VALUES (10005, 10001);
+
+INSERT INTO Schools
+VALUES (10001, 'Rancier Middle School', '111 Briar Ln', 1234567891);
+INSERT INTO Schools
+VALUES (10001, 'Mars Middle School', '132 Tower Rd', 1234557891);
+INSERT INTO Schools
+VALUES (10001, 'North Middle School', '568 Reave Rd', 1234767891);
+INSERT INTO Schools
+VALUES (10001, 'Savanna Middle School', '896 Flower Dr', 1234527891);
+INSERT INTO Schools
+VALUES (10001, 'Harker Middle School', '664 Love Ln', 1934517891);
+
+INSERT INTO Attendance
+VALUES (10001, 10001, 10001);
+INSERT INTO Attendance
+VALUES (10001, 10001, 10002);
+INSERT INTO Attendance
+VALUES (10002, 10002, 10001 ); 
+INSERT INTO Attendance
+VALUES (10002, 10002, 10002); 
+INSERT INTO Attendance
+VALUES (10003, 10003, 10001 );
